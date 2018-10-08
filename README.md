@@ -11,7 +11,7 @@ Minecraft bot. Currently used for stress testing.
 * Configurable target
 * Configurable name format or name list
 * LogPanel to see errors directly
-* Compatible 1.7-1.10 servers
+* Compatible 1.7-1.12.2 servers
 * Test with Spigot, PaperSpigot and TacoSpigot
 * Disconnects gracefully after the end
 * Automatically registers for cracked servers
@@ -22,11 +22,11 @@ Minecraft bot. Currently used for stress testing.
 ## Requirements
 
 * Java 8
-* Minecraft 1.7-1.10 server
+* Minecraft 1.7-1.12.2 server
 
 ## Downloads
 
-https://github.com/games647/LambdaAttack/releases
+https://ci.server24-7.eu/job/LambdaAttack/
 
 ## Images
 
