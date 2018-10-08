@@ -4,6 +4,7 @@ import com.github.games647.lambdaattack.LambdaAttack;
 import com.github.games647.lambdaattack.UniversalProtocol;
 import com.github.games647.lambdaattack.bot.listener.SessionListener110;
 import com.github.games647.lambdaattack.bot.listener.SessionListener111;
+import com.github.games647.lambdaattack.bot.listener.SessionListener112;
 import com.github.games647.lambdaattack.bot.listener.SessionListener17;
 import com.github.games647.lambdaattack.bot.listener.SessionListener18;
 import com.github.games647.lambdaattack.bot.listener.SessionListener19;
@@ -48,6 +49,9 @@ public class Bot {
         this.session = client.getSession();
 
         switch (account.getGameVersion()) {
+            case VERSION_1_12:
+                client.getSession().addListener(new SessionListener112(this));
+		break;
             case VERSION_1_11:
                 client.getSession().addListener(new SessionListener111(this));
                 break;
