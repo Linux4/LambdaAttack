@@ -19,6 +19,8 @@ public class LambdaAttack {
 
     private static LambdaAttack instance;
     private static final Logger LOGGER = Logger.getLogger(PROJECT_NAME);
+    private static boolean useGui = true;
+    private static MainGui mainGui;
 
     public static Logger getLogger() {
         return LOGGER;
@@ -32,11 +34,20 @@ public class LambdaAttack {
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
             LOGGER.log(Level.SEVERE, null, throwable);
         });
+	
+        for(int i = 0; i < args.length; i++) {
+		if(args[i].equalsIgnoreCase("--nogui")) {
+                   useGui = false;
+                }
+        }
 
         instance = new LambdaAttack();
-    }
+        
+	if(useGui) {
+		mainGui = new MainGui(instance);
+	}
 
-    private final MainGui mainGui = new MainGui(this);
+    }
 
     private boolean running = false;
     private GameVersion gameVersion = GameVersion.VERSION_1_11;

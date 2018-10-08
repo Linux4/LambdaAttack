@@ -88,21 +88,21 @@
         </dependency>
 
         <dependency>
-            <groupId>org.spacehq</groupId>
+            <groupId>com.github.mareckoo01</groupId>
             <artifactId>opennbt</artifactId>
-            <version>1.0</version>
+            <version>1.12-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>org.spacehq</groupId>
+            <groupId>com.github.mareckoo01</groupId>
             <artifactId>packetlib</artifactId>
-            <version>1.0</version>
+            <version>1.12-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>org.spacehq</groupId>
+            <groupId>com.github.mareckoo01</groupId>
             <artifactId>mcauthlib</artifactId>
-            <version>1.0</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

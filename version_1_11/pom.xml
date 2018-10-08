@@ -26,21 +26,21 @@
                             <shadedPattern>org.spacehq.mc.protocol.v1_11</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>org.spacehq.opennbt</pattern>
-                            <shadedPattern>org.spacehq.opennbt.v1_11</shadedPattern>
+                            <pattern>com.github.mareckoo01.opennbt</pattern>
+                            <shadedPattern>com.github.mareckoo01.opennbt.v1_11</shadedPattern>
                         </relocation>
                     </relocations>
 
                     <artifactSet>
                         <includes>
-                            <include>org.spacehq:mcprotocollib</include>
+                            <include>com.github.mareckoo01:mcprotocollib</include>
                         </includes>
                     </artifactSet>
 
                     <filters>
                         <filter>
-                            <artifact>org.spacehq:mcprotocollib</artifact>
-                            <artifact>org.spacehq:opennbt</artifact>
+                            <artifact>com.github.mareckoo01:mcprotocollib</artifact>
+                            <artifact>com.github.mareckoo01:opennbt</artifact>
                             <includes>
                                 <include>org/spacehq/mc/protocol/**</include>
                                 <include>org/spacehq/opennbt/**</include>
@@ -63,15 +63,15 @@
     <dependencies>
         <!--ProtocolLib for clients-->
         <dependency>
-            <groupId>org.spacehq</groupId>
+            <groupId>com.github.mareckoo01</groupId>
             <artifactId>mcprotocollib</artifactId>
-            <version>1.11.2-SNAPSHOT</version>
+            <version>1.11-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.games647</groupId>
             <artifactId>lambdaattack-version</artifactId>
-            <version>${project.version}</version>
+            <version>2.2</version>
         </dependency>
     </dependencies>
 </project>
