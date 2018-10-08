@@ -21,6 +21,12 @@ public class LambdaAttack {
     private static final Logger LOGGER = Logger.getLogger(PROJECT_NAME);
     private static boolean useGui = true;
     private static MainGui mainGui;
+    private static boolean autoStart = false;
+    private static String host = "127.0.0.1";
+    private static int port = 25565;
+    private static int delay = 1000;
+    private static int amount = 20;
+    private static String nameFormat = "Bot-%d";
 
     public static Logger getLogger() {
         return LOGGER;
@@ -37,14 +43,23 @@ public class LambdaAttack {
 	
         for(int i = 0; i < args.length; i++) {
 		if(args[i].equalsIgnoreCase("--nogui")) {
-                   useGui = false;
-                }
+                	useGui = false;
+                } else if(args[i].equalsIgnoreCase("--start")) {
+			autoStart = true;  
+		}
         }
 
         instance = new LambdaAttack();
         
 	if(useGui) {
 		mainGui = new MainGui(instance);
+	}
+	if(autoStart) {
+		try {
+			instance.start(host, port, amount, delay, nameFormat);
+		} catch (RequestException ex) {
+			LambdaAttack.getLogger().log(Level.INFO, ex.getMessage(), ex);
+		}
 	}
 
     }
