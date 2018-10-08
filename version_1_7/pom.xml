@@ -26,21 +26,6 @@
                             <shadedPattern>org.spacehq.mc.protocol.v1_7</shadedPattern>
                         </relocation>
                     </relocations>
-
-                    <artifactSet>
-                        <includes>
-                            <include>com.github.steveice10:mcprotocollib</include>
-                        </includes>
-                    </artifactSet>
-
-                    <filters>
-                        <filter>
-                            <artifact>com.github.steveice10:mcprotocollib</artifact>
-                            <includes>
-                                <include>org/spacehq/mc/protocol/**</include>
-                            </includes>
-                        </filter>
-                    </filters>
                 </configuration>
                 <executions>
                     <execution>
