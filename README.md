@@ -1,4 +1,4 @@
-# LambdaAttack
+# LambdaAttack [![Build Status](https://ci.server24-7.eu/job/LambdaAttack/3/badge/icon)](https://ci.server24-7.eu/job/LambdaAttack/3/)
 
 ## Description
 
