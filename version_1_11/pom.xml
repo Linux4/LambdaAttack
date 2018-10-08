@@ -26,21 +26,21 @@
                             <shadedPattern>org.spacehq.mc.protocol.v1_11</shadedPattern>
                         </relocation>
                         <relocation>
-                            <pattern>com.github.mareckoo01.opennbt</pattern>
-                            <shadedPattern>com.github.mareckoo01.opennbt.v1_11</shadedPattern>
+                            <pattern>com.github.steveice10.opennbt</pattern>
+                            <shadedPattern>com.github.steveice10.opennbt.v1_11</shadedPattern>
                         </relocation>
                     </relocations>
 
                     <artifactSet>
                         <includes>
-                            <include>com.github.mareckoo01:mcprotocollib</include>
+                            <include>com.github.steveice10:mcprotocollib</include>
                         </includes>
                     </artifactSet>
 
                     <filters>
                         <filter>
-                            <artifact>com.github.mareckoo01:mcprotocollib</artifact>
-                            <artifact>com.github.mareckoo01:opennbt</artifact>
+                            <artifact>com.github.steveice10:mcprotocollib</artifact>
+                            <artifact>com.github.steveice10:opennbt</artifact>
                             <includes>
                                 <include>org/spacehq/mc/protocol/**</include>
                                 <include>org/spacehq/opennbt/**</include>

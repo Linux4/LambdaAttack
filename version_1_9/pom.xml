@@ -29,13 +29,13 @@
 
                     <artifactSet>
                         <includes>
-                            <include>com.github.mareckoo01:mcprotocollib</include>
+                            <include>com.github.steveice10:mcprotocollib</include>
                         </includes>
                     </artifactSet>
 
                     <filters>
                         <filter>
-                            <artifact>com.github.mareckoo01:mcprotocollib</artifact>
+                            <artifact>com.github.steveice10:mcprotocollib</artifact>
                             <includes>
                                 <include>org/spacehq/mc/protocol/**</include>
                             </includes>
