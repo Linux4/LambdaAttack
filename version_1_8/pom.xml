@@ -25,6 +25,10 @@
                             <pattern>org.spacehq.mc.protocol</pattern>
                             <shadedPattern>org.spacehq.mc.protocol.v1_8</shadedPattern>
                         </relocation>
+			<relocation>
+			    <pattern>org.spacehq.opennbt</pattern>
+			    <shadedPattern>org.spacehq.opennbt.v1_8</shadedPattern>
+			</relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -45,6 +49,12 @@
             <groupId>com.github.mareckoo01</groupId>
             <artifactId>mcprotocollib</artifactId>
             <version>1.8-SNAPSHOT</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>com.github.mareckoo01</groupId>
+	    <artifactId>opennbt</artifactId>
+	    <version>1.0</version>
         </dependency>
 
         <dependency>

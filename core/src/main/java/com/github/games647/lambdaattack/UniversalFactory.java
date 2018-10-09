@@ -6,6 +6,8 @@ public class UniversalFactory {
 
     public static UniversalProtocol authenticate(GameVersion gameVersion, String username) {
         switch (gameVersion) {
+	    case VERSION_1_12:
+		return new com.github.games647.lambdaattack.version.v1_12.ProtocolWrapper(username);
             case VERSION_1_11:
                 return new com.github.games647.lambdaattack.version.v1_11.ProtocolWrapper(username);
             case VERSION_1_10:
@@ -23,6 +25,9 @@ public class UniversalFactory {
 
     public static void sendChatMessage(GameVersion gameVersion, String message, Session session) {
         switch (gameVersion) {
+	    case VERSION_1_12:
+		session.send(new org.spacehq.mc.protocol.v1_12.packet.ingame.client.ClientChatPacket(message));
+		break;
             case VERSION_1_11:
                 session.send(new org.spacehq.mc.protocol.v1_11.packet.ingame.client.ClientChatPacket(message));
                 break;

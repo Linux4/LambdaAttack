@@ -22,11 +22,12 @@ public class LambdaAttack {
     private static boolean useGui = true;
     private static MainGui mainGui;
     private static boolean autoStart = false;
-    private static String host = "127.0.0.1";
-    private static int port = 25565;
-    private static int delay = 1000;
-    private static int amount = 20;
-    private static String nameFormat = "Bot-%d";
+    public static String host = "127.0.0.1";
+    public static int port = 25565;
+    public static int delay = 1000;
+    public static int amount = 20;
+    public static String nameFormat = "Bot-%d";
+    public static String version = "1.12";
 
     public static Logger getLogger() {
         return LOGGER;
@@ -46,16 +47,61 @@ public class LambdaAttack {
                 	useGui = false;
                 } else if(args[i].equalsIgnoreCase("--start")) {
 			autoStart = true;  
+		} else if(args[i].equalsIgnoreCase("--host")) {
+			if(args.length >= i + 2) {
+				host = args[i + 1];
+				i = i + 1;
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --host <host> requires Argument");
+				return;
+			}
+		} else if(args[i].equalsIgnoreCase("--version")) {
+			if(args.length >= i + 2) {
+				version = args[i + 1];
+				i = i + 1;
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --version <version> requires Argument");
+				return;
+			}
+		} else if(args[i].equalsIgnoreCase("--port")) {
+			if(args.length >= i + 2) {
+				try {
+					port = Integer.parseInt(args[i + 1]);
+				} catch (NumberFormatException ex) {
+					LOGGER.log(Level.SEVERE, "Port: " + args[i + 1] + " is no valid number!");
+				}
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --port <port> requires Argument");
+				return;
+			}
+		} else if(args[i].equalsIgnoreCase("--amount")) {
+			if(args.length >= i + 2) {
+				try {
+					amount = Integer.parseInt(args[i + 1]);
+				} catch (NumberFormatException ex) {
+					LOGGER.log(Level.SEVERE, "Amount: " + args[i + 1] + " is no valid number!");
+				}
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --amount <amount> requires Argument");
+				return;
+			}
 		}
         }
 
         instance = new LambdaAttack();
         
 	if(useGui) {
-		mainGui = new MainGui(instance);
+		try {
+			mainGui = new MainGui(instance);
+		} catch (java.awt.HeadlessException ex) {
+			LOGGER.log(Level.WARNING, "Could not create GUI - Disabling GUI..");
+			useGui = false;
+			autoStart = true;
+		}
 	}
 	if(autoStart) {
 		try {
+			instance.setGameVersion(GameVersion.findByName(version));
 			instance.start(host, port, amount, delay, nameFormat);
 		} catch (RequestException ex) {
 			LambdaAttack.getLogger().log(Level.INFO, ex.getMessage(), ex);
@@ -65,7 +111,7 @@ public class LambdaAttack {
     }
 
     private boolean running = false;
-    private GameVersion gameVersion = GameVersion.VERSION_1_11;
+    private GameVersion gameVersion = GameVersion.VERSION_1_12;
 
     private List<Proxy> proxies;
     private List<String> names;

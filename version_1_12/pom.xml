@@ -25,10 +25,6 @@
                             <pattern>org.spacehq.mc.protocol</pattern>
                             <shadedPattern>org.spacehq.mc.protocol.v1_12</shadedPattern>
                         </relocation>
-                        <relocation>
-                            <pattern>com.github.steveice10.opennbt</pattern>
-                            <shadedPattern>com.github.steveice10.opennbt.v1_12</shadedPattern>
-                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>

@@ -30,7 +30,7 @@ public class MainGui {
 
     private final LambdaAttack botManager;
 
-    public MainGui(LambdaAttack botManager) {
+    public MainGui(LambdaAttack botManager) throws java.awt.HeadlessException {
         this.botManager = botManager;
 
         this.frame.setResizable(false);
@@ -52,11 +52,11 @@ public class MainGui {
     private JPanel setTopPane() {
         JPanel topPanel = new JPanel();
         topPanel.add(new JLabel("Host: "));
-        JTextField hostInput = new JTextField("127.0.0.1");
+        JTextField hostInput = new JTextField(botManager.host);
         topPanel.add(hostInput);
 
         topPanel.add(new JLabel("Port: "));
-        JTextField portInput = new JTextField("25565");
+        JTextField portInput = new JTextField(botManager.port + "");
         topPanel.add(portInput);
 
         topPanel.add(new JLabel("Join delay (ms): "));
@@ -70,11 +70,11 @@ public class MainGui {
 
         topPanel.add(new JLabel("Amount: "));
         JSpinner amount = new JSpinner();
-        amount.setValue(20);
+        amount.setValue(botManager.amount);
         topPanel.add(amount);
 
         topPanel.add(new JLabel("NameFormat: "));
-        JTextField nameFormat = new JTextField("Bot-%d");
+        JTextField nameFormat = new JTextField(botManager.nameFormat);
         topPanel.add(nameFormat);
 
         JComboBox<String> versionBox = new JComboBox<>(new String[]{"1.12", "1.11", "1.10", "1.9", "1.8", "1.7"});
@@ -83,6 +83,7 @@ public class MainGui {
                 botManager.setGameVersion(GameVersion.findByName((String) itemEvent.getItem()));
             }
         });
+	versionBox.setSelectedItem(botManager.version);
 
         topPanel.add(versionBox);
 
