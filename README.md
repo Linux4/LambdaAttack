@@ -18,6 +18,7 @@ Minecraft bot. Currently used for stress testing.
 * Supports SOCKS proxies
 * Free
 * Open source
+* Command Line Interface ("java -jar lambdaattack.jar --help" for help)
 
 ## Requirements
 

@@ -70,6 +70,7 @@ public class LambdaAttack {
 				} catch (NumberFormatException ex) {
 					LOGGER.log(Level.SEVERE, "Port: " + args[i + 1] + " is no valid number!");
 				}
+				i = i + 1;
 			} else {
 				LOGGER.log(Level.SEVERE, "Option --port <port> requires Argument");
 				return;
@@ -81,10 +82,42 @@ public class LambdaAttack {
 				} catch (NumberFormatException ex) {
 					LOGGER.log(Level.SEVERE, "Amount: " + args[i + 1] + " is no valid number!");
 				}
+				i = i + 1;
 			} else {
 				LOGGER.log(Level.SEVERE, "Option --amount <amount> requires Argument");
 				return;
 			}
+		} else if(args[i].equalsIgnoreCase("--delay")) {
+			if(args.length >= i + 2) {
+				try {
+					delay = Integer.parseInt(args[i + 1]);
+				} catch (NumberFormatException ex) {
+					LOGGER.log(Level.SEVERE, "Delay: " + args[i + 1] + " is no valid number!");
+				}
+				i = i + 1;
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --delay <delay> requires Argument");
+				return;
+			}
+		} else if(args[i].equalsIgnoreCase("--nameformat")) {
+			if(args.length >= i + 2) {
+				nameFormat = args[i + 1];
+				i = i + 1;
+			} else {
+				LOGGER.log(Level.SEVERE, "Option --nameformat <nameformat> requires Argument");
+				return;
+			}
+		} else { 
+			System.out.println("Available options:");
+			System.out.println("--nogui - Disable GUI");
+			System.out.println("--start - Automatically start bots");
+			System.out.println("--host <host> - Host to connect to");
+			System.out.println("--port <port> - Port to connect to");
+			System.out.println("--version <version> - MC version to use");
+			System.out.println("--amount <amount> - Bot amount");
+			System.out.println("--delay <delay> - Join delay");
+			System.out.println("--nameformat <nameformat> - Bot nameformat (use %d for displaying bot id)");
+			return;
 		}
         }
 
