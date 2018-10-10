@@ -61,7 +61,7 @@ public class MainGui {
 
         topPanel.add(new JLabel("Join delay (ms): "));
         JSpinner delay = new JSpinner();
-        delay.setValue(1000);
+        delay.setValue(botManager.delay);
         topPanel.add(delay);
 
         topPanel.add(new JLabel("Auto Register: "));
