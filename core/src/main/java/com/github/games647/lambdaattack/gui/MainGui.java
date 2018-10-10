@@ -66,6 +66,7 @@ public class MainGui {
 
         topPanel.add(new JLabel("Auto Register: "));
         JCheckBox autoRegister = new JCheckBox();
+	autoRegister.setSelected(botManager.autoRegister);
         topPanel.add(autoRegister);
 
         topPanel.add(new JLabel("Amount: "));
@@ -106,6 +107,7 @@ public class MainGui {
         topPanel.add(loadProxies);
 
         startButton.addActionListener((action) -> {
+	    botManager.autoRegister = autoRegister.isSelected();
             String host = hostInput.getText();
             int port = Integer.parseInt(portInput.getText());
 

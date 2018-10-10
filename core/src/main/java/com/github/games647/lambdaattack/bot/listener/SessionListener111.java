@@ -5,7 +5,7 @@ import com.github.games647.lambdaattack.bot.EntitiyLocation;
 
 import java.util.logging.Level;
 
-import org.spacehq.mc.protocol.v1_11.packet.login.server.LoginSuccessPacket;
+import org.spacehq.mc.protocol.v1_11.packet.ingame.server.ServerJoinGamePacket;
 import org.spacehq.mc.protocol.v1_11.data.message.Message;
 import org.spacehq.mc.protocol.v1_11.packet.ingame.server.ServerChatPacket;
 import org.spacehq.mc.protocol.v1_11.packet.ingame.server.entity.player.ServerPlayerHealthPacket;
@@ -37,9 +37,9 @@ public class SessionListener111 extends SessionListener {
             ServerPlayerHealthPacket healthPacket = receiveEvent.<ServerPlayerHealthPacket>getPacket();
             owner.setHealth(healthPacket.getHealth());
             owner.setFood(healthPacket.getFood());
-        } else if (receiveEvent.getPacket() instanceof LoginSuccessPacket) {
-            LoginSuccessPacket loginSuccessPacket = receiveEvent.<LoginSuccessPacket>getPacket();
-            super.onJoin(loginSuccessPacket.getProfile());
+        } else if (receiveEvent.getPacket() instanceof ServerJoinGamePacket) {
+            ServerJoinGamePacket loginSuccessPacket = receiveEvent.<ServerJoinGamePacket>getPacket();
+            super.onJoin();
         }
     }
 }

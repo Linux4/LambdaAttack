@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 
 import org.spacehq.mc.auth.data.GameProfile;
 import org.spacehq.mc.auth.exception.request.RequestException;
-import org.spacehq.mc.protocol.v1_10.packet.ingame.client.ClientChatPacket;
 import org.spacehq.packetlib.Client;
 import org.spacehq.packetlib.Session;
 import org.spacehq.packetlib.tcp.TcpSessionFactory;
@@ -76,8 +75,28 @@ public class Bot {
 
     public void sendMessage(String message) {
         if (session != null) {
-            ClientChatPacket chatPacket = new ClientChatPacket(message);
-            session.send(chatPacket);
+        	switch (account.getGameVersion()) {
+        	    case VERSION_1_12:
+        	        session.send(new org.spacehq.mc.protocol.v1_12.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    case VERSION_1_11:
+        	        session.send(new org.spacehq.mc.protocol.v1_11.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    case VERSION_1_10:
+        	        session.send(new org.spacehq.mc.protocol.v1_10.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    case VERSION_1_9:
+        	        session.send(new org.spacehq.mc.protocol.v1_9.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    case VERSION_1_8:
+        	        session.send(new org.spacehq.mc.protocol.v1_8.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    case VERSION_1_7:
+        	        session.send(new org.spacehq.mc.protocol.v1_7.packet.ingame.client.ClientChatPacket(message));
+        	        break;
+        	    default:
+        	        throw new IllegalArgumentException("Invalid game version");
+		}
         }
     }
 

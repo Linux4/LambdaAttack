@@ -28,6 +28,7 @@ public class LambdaAttack {
     public static int amount = 20;
     public static String nameFormat = "Bot-%d";
     public static String version = "1.12";
+    public static boolean autoRegister = false;
 
     public static Logger getLogger() {
         return LOGGER;
@@ -107,6 +108,8 @@ public class LambdaAttack {
 				LOGGER.log(Level.SEVERE, "Option --nameformat <nameformat> requires Argument");
 				return;
 			}
+		} else if(args[i].equalsIgnoreCase("--autoregister")) {
+			autoRegister = true;
 		} else { 
 			System.out.println("Available options:");
 			System.out.println("--nogui - Disable GUI");
@@ -117,6 +120,7 @@ public class LambdaAttack {
 			System.out.println("--amount <amount> - Bot amount");
 			System.out.println("--delay <delay> - Join delay");
 			System.out.println("--nameformat <nameformat> - Bot nameformat (use %d for displaying bot id)");
+			System.out.println("--autoregister - Automatically register");
 			return;
 		}
         }
@@ -148,8 +152,6 @@ public class LambdaAttack {
 
     private List<Proxy> proxies;
     private List<String> names;
-
-    private boolean autoRegister = false;
 
     private final List<Bot> clients = new ArrayList<>();
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
@@ -237,9 +239,5 @@ public class LambdaAttack {
 
     public boolean isAutoRegister() {
         return autoRegister;
-    }
-
-    public void setAutoRegister(boolean autoRegister) {
-        this.autoRegister = autoRegister;
     }
 }
