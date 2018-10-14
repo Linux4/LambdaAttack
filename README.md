@@ -1,4 +1,4 @@
-# LambdaAttack [![Build Status](https://ci.server24-7.eu/job/LambdaAttack/3/badge/icon)](https://ci.server24-7.eu/job/LambdaAttack/3/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/699bbca306564847b52e8fb4f55bdc6b)](https://www.codacy.com/app/Server24-7/LambdaAttack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Server24-7/LambdaAttack&amp;utm_campaign=Badge_Grade)
+# LambdaAttack [![Build Status](https://ci.server24-7.eu/job/LambdaAttack/3/badge/icon)](https://ci.server24-7.eu/job/LambdaAttack/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fa8d60aed3b649cfa1b609e33443e8a3)](https://www.codacy.com/app/Server24-7/LambdaAttack?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Server24-7/LambdaAttack&amp;utm_campaign=Badge_Grade)  
 
 ## Description
 
