@@ -26,128 +26,129 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainGui {
 
-    private final JFrame frame = new JFrame(LambdaAttack.PROJECT_NAME);
+	private final JFrame frame = new JFrame(LambdaAttack.PROJECT_NAME);
 
-    private final LambdaAttack botManager;
+	private final LambdaAttack botManager;
 
-    public MainGui(LambdaAttack botManager) throws java.awt.HeadlessException {
-        this.botManager = botManager;
+	public MainGui(LambdaAttack botManager) throws java.awt.HeadlessException {
+		this.botManager = botManager;
 
-        this.frame.setResizable(false);
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.frame.setResizable(false);
+		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setLookAndFeel();
+		setLookAndFeel();
 
-        JPanel topPanel = setTopPane();
-        JScrollPane buttonPane = setButtonPane();
+		JPanel topPanel = setTopPane();
+		JScrollPane buttonPane = setButtonPane();
 
-        this.frame.add(topPanel, BorderLayout.PAGE_START);
-        this.frame.add(buttonPane, BorderLayout.CENTER);
-        this.frame.pack();
-        this.frame.setVisible(true);
+		this.frame.add(topPanel, BorderLayout.PAGE_START);
+		this.frame.add(buttonPane, BorderLayout.CENTER);
+		this.frame.pack();
+		this.frame.setVisible(true);
 
-        LambdaAttack.getLogger().info("Starting program");
-    }
+		LambdaAttack.getLogger().info("Starting program");
+	}
 
-    private JPanel setTopPane() {
-        JPanel topPanel = new JPanel();
-        topPanel.add(new JLabel("Host: "));
-        JTextField hostInput = new JTextField(botManager.host);
-        topPanel.add(hostInput);
+	private JPanel setTopPane() {
+		JPanel topPanel = new JPanel();
+		topPanel.add(new JLabel("Host: "));
+		JTextField hostInput = new JTextField(botManager.host);
+		topPanel.add(hostInput);
 
-        topPanel.add(new JLabel("Port: "));
-        JTextField portInput = new JTextField(botManager.port + "");
-        topPanel.add(portInput);
+		topPanel.add(new JLabel("Port: "));
+		JTextField portInput = new JTextField(botManager.port + "");
+		topPanel.add(portInput);
 
-        topPanel.add(new JLabel("Join delay (ms): "));
-        JSpinner delay = new JSpinner();
-        delay.setValue(botManager.delay);
-        topPanel.add(delay);
+		topPanel.add(new JLabel("Join delay (ms): "));
+		JSpinner delay = new JSpinner();
+		delay.setValue(botManager.delay);
+		topPanel.add(delay);
 
-        topPanel.add(new JLabel("Auto Register: "));
-        JCheckBox autoRegister = new JCheckBox();
-	autoRegister.setSelected(botManager.autoRegister);
-        topPanel.add(autoRegister);
+		topPanel.add(new JLabel("Auto Register: "));
+		JCheckBox autoRegister = new JCheckBox();
+		autoRegister.setSelected(botManager.autoRegister);
+		topPanel.add(autoRegister);
 
-        topPanel.add(new JLabel("Amount: "));
-        JSpinner amount = new JSpinner();
-        amount.setValue(botManager.amount);
-        topPanel.add(amount);
+		topPanel.add(new JLabel("Amount: "));
+		JSpinner amount = new JSpinner();
+		amount.setValue(botManager.amount);
+		topPanel.add(amount);
 
-        topPanel.add(new JLabel("NameFormat: "));
-        JTextField nameFormat = new JTextField(botManager.nameFormat);
-        topPanel.add(nameFormat);
+		topPanel.add(new JLabel("NameFormat: "));
+		JTextField nameFormat = new JTextField(botManager.nameFormat);
+		topPanel.add(nameFormat);
 
-        JComboBox<String> versionBox = new JComboBox<>(new String[]{"1.12", "1.11", "1.10", "1.9", "1.8", "1.7"});
-        versionBox.addItemListener(itemEvent -> {
-            if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                botManager.setGameVersion(GameVersion.findByName((String) itemEvent.getItem()));
-            }
-        });
-	versionBox.setSelectedItem(botManager.version);
+		JComboBox<String> versionBox = new JComboBox<>(
+				new String[] { "1.14", "1.12", "1.11", "1.10", "1.9", "1.8", "1.7" });
+		versionBox.addItemListener(itemEvent -> {
+			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+				botManager.setGameVersion(GameVersion.findByName((String) itemEvent.getItem()));
+			}
+		});
+		versionBox.setSelectedItem(botManager.version);
 
-        topPanel.add(versionBox);
+		topPanel.add(versionBox);
 
-        JButton startButton = new JButton("Start");
-        JButton stopButton = new JButton("Stop");
-        topPanel.add(startButton);
-        topPanel.add(stopButton);
+		JButton startButton = new JButton("Start");
+		JButton stopButton = new JButton("Stop");
+		topPanel.add(startButton);
+		topPanel.add(stopButton);
 
-        JButton loadNames = new JButton("Load Names");
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("", "txt"));
-        loadNames.addActionListener(new LoadNamesListener(botManager, frame, fileChooser));
+		JButton loadNames = new JButton("Load Names");
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("", "txt"));
+		loadNames.addActionListener(new LoadNamesListener(botManager, frame, fileChooser));
 
-        topPanel.add(loadNames);
+		topPanel.add(loadNames);
 
-        JButton loadProxies = new JButton("Load proxies");
+		JButton loadProxies = new JButton("Load proxies");
 
-        loadProxies.addActionListener(new LoadProxiesListener(botManager, frame, fileChooser));
+		loadProxies.addActionListener(new LoadProxiesListener(botManager, frame, fileChooser));
 
-        topPanel.add(loadProxies);
+		topPanel.add(loadProxies);
 
-        startButton.addActionListener((action) -> {
-	    botManager.autoRegister = autoRegister.isSelected();
-            String host = hostInput.getText();
-            int port = Integer.parseInt(portInput.getText());
+		startButton.addActionListener((action) -> {
+			botManager.autoRegister = autoRegister.isSelected();
+			String host = hostInput.getText();
+			int port = Integer.parseInt(portInput.getText());
 
-            botManager.getThreadPool().submit(() -> {
-                try {
-                    botManager.start(host, port, (int) amount.getValue(), (int) delay.getValue(), nameFormat.getText());
-                } catch (Exception ex) {
-                    LambdaAttack.getLogger().log(Level.INFO, ex.getMessage(), ex);
-                }
-            });
-        });
+			botManager.getThreadPool().submit(() -> {
+				try {
+					botManager.start(host, port, (int) amount.getValue(), (int) delay.getValue(), nameFormat.getText());
+				} catch (Exception ex) {
+					LambdaAttack.getLogger().log(Level.INFO, ex.getMessage(), ex);
+				}
+			});
+		});
 
-        stopButton.addActionListener(action -> botManager.stop());
-        return topPanel;
-    }
+		stopButton.addActionListener(action -> botManager.stop());
+		return topPanel;
+	}
 
-    private JScrollPane setButtonPane() throws SecurityException {
-        JScrollPane buttonPane = new JScrollPane();
-        buttonPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        buttonPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	private JScrollPane setButtonPane() throws SecurityException {
+		JScrollPane buttonPane = new JScrollPane();
+		buttonPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		buttonPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JTextArea logArea = new JTextArea(10, 1);
-        buttonPane.getViewport().setView(logArea);
+		JTextArea logArea = new JTextArea(10, 1);
+		buttonPane.getViewport().setView(logArea);
 
-        LambdaAttack.getLogger().addHandler(new LogHandler(logArea));
+		LambdaAttack.getLogger().addHandler(new LogHandler(logArea));
 
-        return buttonPane;
-    }
+		return buttonPane;
+	}
 
-    private void setLookAndFeel() {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException
-                | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            LambdaAttack.getLogger().log(Level.SEVERE, null, ex);
-        }
-    }
+	private void setLookAndFeel() {
+		try {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException ex) {
+			LambdaAttack.getLogger().log(Level.SEVERE, null, ex);
+		}
+	}
 }

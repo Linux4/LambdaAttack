@@ -17,6 +17,8 @@
         <module>version_1_11</module>
         <module>mcprotocollib_1_12</module>
         <module>version_1_12</module>
+	<module>mcprotocollib_1_14</module>
+	<module>version_1_14</module>
         <module>core</module>
     </modules>
 

@@ -27,7 +27,7 @@ public class LambdaAttack {
     public static int delay = 1000;
     public static int amount = 20;
     public static String nameFormat = "Bot-%d";
-    public static String version = "1.12";
+    public static String version = "1.14";
     public static boolean autoRegister = false;
 
     public static Logger getLogger() {
